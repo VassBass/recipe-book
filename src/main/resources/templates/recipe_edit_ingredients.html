@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Рецепт</title>
+    <link rel="stylesheet" type="text/css" href="../topnav.css">
+    <link rel="stylesheet" type="text/css" href="../table_small.css">
+    <link rel="stylesheet" type="text/css" href="../button.css">
+</head>
+<body>
+<div class="topnav">
+    <a href="/ingredients">Ингридиенты</a>
+    <a class="active" href="/recipes">Рецепты</a>
+    <div class="topnav-right">GFL Task 4</div>
+</div>
+
+<form id="form" action="/recipe_ingredient_add" method="post">
+    <input type="hidden" name="recipeId" th:value="${recipe.id}">
+    <input type="hidden" name="title" th:value="${recipe.title}">
+    <input type="hidden" name="description" th:value="${recipe.description}">
+</form>
+
+<table class="table_small">
+    <thead>
+    <tr>
+        <th th:text="${recipe.title}"></th>
+    </tr>
+    </thead>
+    <tbody class="body">
+    <tr th:each="t : ${tmp}">
+        <td th:text="${t.ingredient.title}"></td>
+        <td th:text="${t.countNum}"></td>
+        <td th:text="${t.countVal}"></td>
+        <td> <a th:href="@{/recipe_ingredient_delete(id=${t.id},recipeId=${recipe.id},title=${recipe.title},description=${recipe.description})}">Удалить</a></td>
+    </tr>
+    </tbody>
+    <tbody class="add_field">
+    <tr>
+        <td>
+            <select form="form" name="ingredientId">
+                <option th:each="i : ${ingredients}" th:value="${i.id}" th:text="${i.title}">
+                </option>
+            </select>
+            <input form="form" type="number" step="0.01" placeholder="количество" name="countNum">
+            <input form="form" type="text" name="countVal" placeholder="мера">
+            <input form="form" type="submit" value="Добавить">
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<form action="/recipe_edit" method="post">
+    <input type="hidden" name="recipeId" th:value="${recipe.id}">
+    <input type="hidden" name="title" th:value="${recipe.title}">
+    <input type="hidden" name="description" th:value="${recipe.description}">
+    <button class="button" type="submit" name="action" value="show">Назад</button>
+    <button class="button" type="submit" name="action" value="save">Сохранить</button>
+</form>
+</body>
+</html>

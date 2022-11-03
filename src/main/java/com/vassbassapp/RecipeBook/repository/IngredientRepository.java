@@ -1,0 +1,7 @@
+package com.vassbassapp.RecipeBook.repository;
+
+import com.vassbassapp.RecipeBook.entities.Ingredient;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IngredientRepository extends JpaRepository<Ingredient, Integer> {
+}

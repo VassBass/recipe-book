@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ингредиент</title>
+    <link rel="stylesheet" type="text/css" href="../topnav.css">
+    <link rel="stylesheet" type="text/css" href="../table_small.css">
+    <link rel="stylesheet" type="text/css" href="../button.css">
+</head>
+<body>
+<div class="topnav">
+    <a class="active" href="/ingredients">Ингридиенты</a>
+    <a href="/recipes">Рецепты</a>
+    <div class="topnav-right">GFL Task 4</div>
+</div>
+
+<table class="table_small">
+    <thead>
+    <tr>
+        <th th:text="${ingredient.title}"></th>
+    </tr>
+    </thead>
+    <tbody class="body">
+    <tr>
+        <td class="long_text" th:text="${ingredient.description}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<form id="edit" th:action="@{/ingredient_edit/{id}(id=${ingredient.id})}" method="get"></form>
+<form id="back" action="/ingredients" method="get"></form>
+
+<input form="back" class="button" type="submit" value="Назад">
+<input form="edit" class="button" type="submit" value="Редактировать">
+</body>
+</html>

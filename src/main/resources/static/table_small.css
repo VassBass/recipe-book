@@ -1,0 +1,47 @@
+.table_small {
+    border-collapse: collapse;
+    border: 2px solid #04AA6D;
+    margin: 10px;
+    font-size: 0.9em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table_small tbody {
+    display: block;
+}
+
+.body {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.table_small thead tr {
+    background-color: #04AA6D;
+    color: #ffffff;
+    text-align: left;
+}
+
+.table_small th {
+    padding: 12px 0px 12px 0px;
+    text-align: center;
+}
+
+.table_small td {
+    padding: 12px;
+}
+
+.table_small tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.table_small a {
+    color: #04AA6D;
+}
+
+.add_field {
+    background-color: #f3f3f3;
+}
+
+.long_text {
+    font-size: 1.2em;
+}

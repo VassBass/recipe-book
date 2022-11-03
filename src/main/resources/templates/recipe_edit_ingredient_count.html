@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить пропорции</title>
+    <link rel="stylesheet" type="text/css" href="../topnav.css">
+    <link rel="stylesheet" type="text/css" href="../table.css">
+    <link rel="stylesheet" type="text/css" href="../button.css">
+</head>
+<body>
+<div class="topnav">
+    <a href="/ingredients">Ингридиенты</a>
+    <a class="active" href="/recipes">Рецепты</a>
+    <div class="topnav-right">GFL Task 4</div>
+</div>
+
+<form id="back" th:action="@{/recipe_info/{id}(id=${recipe.id})}" method="get"></form>
+<form id="confirm" th:action="@{/recipe_edit_ingredient_count/{id}(id=${count.id})}" method="post"></form>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th th:text="${recipe.title}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <p>Введите количество, которое есть у вас в наличии</p>
+            <p>В результате вы получите рецепт с пересчитаными пропорциями под введенное вами количество</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label th:text="${count.ingredient.title}"></label>
+            <input form="confirm" type="number" step="0.01" placeholder="В наличии" name="countNum" th:field="${count.countNum}">
+            <input type="text" th:field="${count.countVal}" disabled>
+            <input form="back" type="submit" value="Отмена">
+            <input form="confirm" type="submit" value="Пересчитать">
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

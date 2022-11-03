@@ -1,0 +1,18 @@
+.table_edit {
+    border-collapse: collapse;
+    border: 2px solid #04AA6D;
+    margin: 10px;
+    font-size: 0.9em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.label {
+    text-align: center;
+    background-color: #04AA6D;
+    color: white;
+    padding: 5px;
+}
+
+.text {
+    background-color: #04AA6D;
+}

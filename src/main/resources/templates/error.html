@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" type="text/css" href="../topnav.css">
+    <link rel="stylesheet" type="text/css" href="../button.css">
+</head>
+<body>
+<div class="topnav">
+    <a href="/ingredients">Ингридиенты</a>
+    <a href="/recipes">Рецепты</a>
+    <div class="topnav-right">GFL Task 4</div>
+</div>
+
+<h1 th:text="${message}"></h1>
+
+<form action="/recipes" method="get">
+    <input class="button" type="submit" value="Назад к рецептам">
+</form>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Рецепт</title>
+    <link rel="stylesheet" type="text/css" href="../topnav.css">
+    <link rel="stylesheet" type="text/css" href="../table_edit.css">
+    <link rel="stylesheet" type="text/css" href="../table_small.css">
+    <link rel="stylesheet" type="text/css" href="../button.css">
+</head>
+<body>
+<div class="topnav">
+    <a href="/ingredients">Ингридиенты</a>
+    <a class="active" href="/recipes">Рецепты</a>
+    <div class="topnav-right">GFL Task 4</div>
+</div>
+
+<form id="edit_form" action="/recipe_edit" method="post">
+    <input type="hidden" name="recipeId" th:value="${recipe.id}">
+</form>
+<form id="back" action="/recipes" method="get"></form>
+
+<table class="table_edit">
+    <tr>
+        <td class="label">Название блюда</td>
+        <td class="text">
+            <input form="edit_form" type="text" size="80" name="title" th:field="${recipe.title}">
+        </td>
+    </tr>
+    <tr>
+        <td class="label">Описание</td>
+        <td class="text">
+            <textarea form="edit_form" name="description" cols="80" rows="25" th:field="${recipe.description}"></textarea>
+        </td>
+    </tr>
+</table>
+<table class="table_small">
+    <thead>
+    <tr>
+        <th>Ингридиенты</th>
+    </tr>
+    </thead>
+    <tbody class="body">
+    <tr th:each="t : ${tmp}">
+        <td th:text="${t.ingredient.title}"></td>
+        <td th:text="${t.countNum}"></td>
+        <td th:text="${t.countVal}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<input class="button" form="back" type="submit" value="Отмена">
+<button class="button" form="edit_form" type="submit" name="action" value="ingredients">Изменить список ингредиентов</button>
+<button class="button" form="edit_form" type="submit" name="action" value="save">Сохранить</button>
+</body>
+</html>

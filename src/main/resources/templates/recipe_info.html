@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ингредиет</title>
+    <link rel="stylesheet" type="text/css" href="../topnav.css">
+    <link rel="stylesheet" type="text/css" href="../table.css">
+    <link rel="stylesheet" type="text/css" href="../table_small.css">
+    <link rel="stylesheet" type="text/css" href="../button.css">
+</head>
+<body>
+<div class="topnav">
+    <a href="/ingredients">Ингридиенты</a>
+    <a class="active" href="/recipes">Рецепты</a>
+    <div class="topnav-right">GFL Task 4</div>
+</div>
+
+<form id="form_info" th:action="@{/recipe_info/{id}(id=${recipe.id})}" method="get"></form>
+<form id="form_edit" th:action="@{/recipe_edit/{id}(id=${recipe.id})}" method="get"></form>
+<form id="back" action="/recipes" method="get"></form>
+
+<input class="button" form="back" type="submit" value="Назад">
+<button class="button" form="form_info" type="submit">Вернуть оригинальные пропорции</button>
+<button class="button" form="form_edit" type="submit">Редактировать</button>
+
+<table class="table_small">
+    <thead>
+    <tr>
+        <th th:text="${recipe.title}"></th>
+    </tr>
+    </thead>
+    <tbody class="body">
+    <tr>
+        <td class="long_text" th:text="${recipe.description}"></td>
+    </tr>
+    </tbody>
+</table>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Ингредиенты</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="i : ${recipe.ingredients}">
+        <td th:text="${i.ingredient.title}"></td>
+        <td th:text="${i.countNum}"></td>
+        <td th:text="${i.countVal}"></td>
+        <td><a th:href="@{/recipe_edit_ingredient_count/{id}(id=${i.id})}">Пересчитать пропорции</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск рецепта</title>
+    <link rel="stylesheet" type="text/css" href="topnav.css">
+    <link rel="stylesheet" type="text/css" href="button.css">
+    <link rel="stylesheet" type="text/css" href="table_small.css">
+</head>
+<body>
+<div class="topnav">
+    <a href="/ingredients">Ингридиенты</a>
+    <a class="active" href="/recipes">Рецепты</a>
+    <div class="topnav-right">GFL Task 4</div>
+</div>
+
+<form id="back" action="/recipes" method="get"></form>
+<form id="clear" action="/recipe_search_ingredient_clear" method="get"></form>
+<form id="start" action="/recipe_search_ingredients_start" method="get"></form>
+<form id="form" action="/recipe_search_ingredient_add" method="post"></form>
+
+<input class="button" form="back" type="submit" value="Назад">
+<input class="button" form="clear" type="submit" value="Очистить список">
+<input class="button" form="start" type="submit" value="Начать поиск">
+
+<table class="table_small">
+    <thead>
+    <tr>
+        <th>Ингридиент</th>
+    </tr>
+    </thead>
+    <tbody class="body">
+    <tr th:each="t : ${list}">
+        <td th:text="${t.ingredient.title}"></td>
+        <td> <a th:href="@{/recipe_search_ingredient_delete/{id}(id=${t.ingredient.id})}">Удалить</a></td>
+    </tr>
+    </tbody>
+    <tbody>
+    <tr class="add_field">
+        <td>
+            <select form="form" name="ingredientId">
+                <option th:each="i : ${ingredients}" th:value="${i.id}" th:text="${i.title}">
+                </option>
+            </select>
+        </td>
+        <td>
+            <input type="submit" form="form" value="Добавить">
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
